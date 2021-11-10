@@ -128,7 +128,8 @@ df_text.head()
 # Commented out IPython magic to ensure Python compatibility.
 # Tokenize the cleaned text, with %time just so I can see how long it takes  
 
-# %time df_text['clean_body'] = df_text['clean_body'].map(lambda x: spacy_tokenizer(x))
+# this entry was timed in google colab 
+df_text['clean_body'] = df_text['clean_body'].map(lambda x: spacy_tokenizer(x))
 
 df_text.head()
 
@@ -168,7 +169,8 @@ print(text_lsi_corpus)
 
 from gensim.similarities import MatrixSimilarity 
 
-# %time text_index = MatrixSimilarity(text_lsi_corpus, num_features = text_lsi_corpus.num_terms)
+# This entry was timed in google colab 
+text_index = MatrixSimilarity(text_lsi_corpus, num_features = text_lsi_corpus.num_terms)
 
 # SEMANTIC SEARCH TIME
 # I HOPE THIS WORKS
@@ -199,6 +201,9 @@ def semantic_search(term):
         break
 
   return pd.DataFrame(best_suggestions, columns=['Relevance', 'Trend'])
+
+# test searched done in Colab - function can be called in the terminal as well 
+# Will return a dataframe with trending documents with their % of relevance to the searched term 
 
 semantic_search('iphone')
 
